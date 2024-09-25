@@ -1,0 +1,25 @@
+{
+	"name": "@hongkiat/wp-dynamic-settings-page",
+	"version": "0.1.0",
+	"description": "Dynamic ",
+	"author": {
+		"name": "Thoriq Firdaus",
+		"url": "https://github.com/tfirdaus"
+	},
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"dependencies": {
+		"@syntatis/kubrick": "^0.1.0-beta.3",
+		"@wordpress/api-fetch": "^7.3.0",
+		"@wordpress/dom-ready": "^4.3.0",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.0.0"
+	},
+	"scripts": {
+		"start": "wp-scripts start",
+		"build": "wp-scripts build"
+	}
+}
