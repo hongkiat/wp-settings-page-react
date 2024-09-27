@@ -21,9 +21,7 @@
  */
 
 
-add_action('admin_menu', 'add_submenu');
-
-function add_submenu() {
+add_action('admin_menu', function () {
     add_submenu_page( 
         'options-general.php', // Parent slug.
         'Kubrick Settings',
@@ -44,11 +42,9 @@ function add_submenu() {
             <?php
         },
     );
-}
+});
 
-add_action('admin_enqueue_scripts', 'enqueue_scripts');
-
-function enqueue_scripts() {
+add_action('admin_enqueue_scripts', function () {
     $assets = include plugin_dir_path(__FILE__) . 'build/index.asset.php';
 
     wp_enqueue_script(
@@ -58,4 +54,23 @@ function enqueue_scripts() {
         $assets['version'],
         true
     );
+
+    wp_enqueue_style(
+        'kubrick-setting', 
+        plugin_dir_url(__FILE__) . 'build/index.css',
+        [], 
+        $assets['version']
+    );
+});
+
+function register_settings() {
+    register_setting( 'kubrick_option_group', 'admin_footer_text', [
+        'type' => 'string', 
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'footer text',
+        'show_in_rest' => true,
+    ] ); 
 }
+
+add_action('admin_init',  'register_settings');
+add_action('rest_api_init',  'register_settings');
